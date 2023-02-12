@@ -12,18 +12,18 @@ public class SomeBusinessImpl {
         this.dataService = dataService;
     }
 
-    public int calculateSum(int[] nums){
+    public int calculateSum(int[] nums) {
         int total = 0;
-        for (int num : nums){
+        for (int num : nums) {
             total += num;
         }
         return total;
     }
 
-    public int calculateSumUsingDataService(){
+    public int calculateSumUsingDataService() {
         int total = 0;
         int[] nums = dataService.getAllNums();
-        for (int num : nums){
+        for (int num : nums) {
             total += num;
         }
         return total;

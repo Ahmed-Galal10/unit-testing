@@ -10,7 +10,7 @@ class SomeBusinessImplTest {
     @Test
     void givenMultipleValuesWhenCalculateSumThenReturnSum() {
         SomeBusinessImpl business = new SomeBusinessImpl();
-        int actualResult = business.calculateSum(new int[]{1,3,4});
+        int actualResult = business.calculateSum(new int[]{1, 3, 4});
         int expectedResult = 8;
 
         assertEquals(expectedResult, actualResult);

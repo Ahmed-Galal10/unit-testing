@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class DataServiceStubWithMultipleValues implements DataService{
+class DataServiceStubWithMultipleValues implements DataService {
 
     @Override
     public int[] getAllNums() {
@@ -13,7 +13,7 @@ class DataServiceStubWithMultipleValues implements DataService{
     }
 }
 
-class DataServiceStubWithOneValue implements DataService{
+class DataServiceStubWithOneValue implements DataService {
 
     @Override
     public int[] getAllNums() {
@@ -21,7 +21,7 @@ class DataServiceStubWithOneValue implements DataService{
     }
 }
 
-class DataServiceStubWithEmptyValues implements DataService{
+class DataServiceStubWithEmptyValues implements DataService {
 
     @Override
     public int[] getAllNums() {
