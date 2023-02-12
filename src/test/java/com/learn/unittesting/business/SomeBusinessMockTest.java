@@ -3,21 +3,31 @@ package com.learn.unittesting.business;
 import com.learn.unittesting.data.DataService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-
+//@ExtendWith(MockitoJUnitRunner.class)
 public class SomeBusinessMockTest {
 
-    SomeBusinessImpl business = new SomeBusinessImpl();
-    DataService dataServiceMock = mock(DataService.class);
+    @InjectMocks
+    SomeBusinessImpl business;
+    @Mock
+    DataService dataServiceMock;
 
     @BeforeEach
-    void before() {
+    void openMocks() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @BeforeEach
+    void setDataServiceMockInBusiness() {
         business.setDataService(dataServiceMock);
     }
+
 
     @Test
     void givenMultipleValuesWhenCalculateSumThenReturnSumUsingDataService() {
