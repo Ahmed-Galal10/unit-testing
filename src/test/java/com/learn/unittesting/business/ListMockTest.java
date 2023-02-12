@@ -8,6 +8,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -24,17 +25,21 @@ public class ListMockTest {
 
     @Test
     public void sizeWithDifferentValues() {
-        when(listMock.size())
-                .thenReturn(7)
-                .thenReturn(11);
+        when(listMock.size()).thenReturn(7).thenReturn(11);
         assertEquals(7, listMock.size());
         assertEquals(11, listMock.size());
     }
 
     @Test
-    public void sizeWithReturnParams() {
-        when(listMock.get(0))
-                .thenReturn("Ahmed");
+    public void sizeWithReturnSpecificParams() {
+        when(listMock.get(0)).thenReturn("Ahmed");
         assertEquals("Ahmed", listMock.get(0));
+    }
+
+    @Test
+    public void sizeWithReturnGenericParams() {
+        when(listMock.get(anyInt())).thenReturn("Ahmed").thenReturn("Galal");
+        assertEquals("Ahmed", listMock.get(0));
+        assertEquals("Galal", listMock.get(4));
     }
 }
