@@ -19,15 +19,10 @@ public class SomeBusinessMockTest {
     DataService dataServiceMock;
 
     @BeforeEach
-    void openMocks() {
+    void before() {
         MockitoAnnotations.openMocks(this);
-    }
-
-    @BeforeEach
-    void setDataServiceMockInBusiness() {
         business.setDataService(dataServiceMock);
     }
-
 
     @Test
     void givenMultipleValuesWhenCalculateSumThenReturnSumUsingDataService() {
