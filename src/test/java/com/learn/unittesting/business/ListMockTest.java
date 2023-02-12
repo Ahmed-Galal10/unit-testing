@@ -9,13 +9,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ListMockTest {
 
     @Mock
-    List<Object> listMock;
+    List<String> listMock;
 
     @Test
     public void size() {
@@ -41,5 +41,24 @@ public class ListMockTest {
         when(listMock.get(anyInt())).thenReturn("Ahmed").thenReturn("Galal");
         assertEquals("Ahmed", listMock.get(0));
         assertEquals("Galal", listMock.get(4));
+    }
+
+    @Test
+    public void verificationBasics() {
+        String firstValue = listMock.get(0);
+        String secondValue = listMock.get(1);
+        String thirdValue = listMock.get(1);
+
+        verify(listMock).get(0);
+
+        verify(listMock, times(3)).get(anyInt());
+        verify(listMock, never()).get(2);
+
+        verify(listMock, atMost(2)).get(1);
+        verify(listMock, atMostOnce()).get(0);
+
+        verify(listMock, atLeast(1)).get(1);
+        verify(listMock, atLeastOnce()).get(1);
+
     }
 }
