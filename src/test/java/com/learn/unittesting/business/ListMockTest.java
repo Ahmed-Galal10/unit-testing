@@ -2,6 +2,7 @@ package com.learn.unittesting.business;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -60,5 +61,16 @@ public class ListMockTest {
         verify(listMock, atLeast(1)).get(1);
         verify(listMock, atLeastOnce()).get(1);
 
+    }
+
+    @Test
+    public void argumentCapturing(){
+        listMock.add("Galal");
+
+        //verification
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(listMock).add(captor.capture());
+
+        assertEquals("Galal", captor.getValue());
     }
 }
