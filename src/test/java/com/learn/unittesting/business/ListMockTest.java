@@ -64,7 +64,7 @@ public class ListMockTest {
     }
 
     @Test
-    public void argumentCapturing(){
+    public void argumentCapturing() {
         listMock.add("Galal");
 
         //verification
@@ -72,5 +72,21 @@ public class ListMockTest {
         verify(listMock).add(captor.capture());
 
         assertEquals("Galal", captor.getValue());
+    }
+
+    @Test
+    public void multipleArgumentCapturing() {
+        listMock.add("Ahmed");
+        listMock.add("Galal");
+
+        //verification
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(listMock, atMost(2)).add(captor.capture());
+//        verify(listMock, times(2)).add(captor.capture());
+
+        List<String> allCaptorsvalues = captor.getAllValues();
+
+        assertEquals("Ahmed", allCaptorsvalues.get(0));
+        assertEquals("Galal", allCaptorsvalues.get(1));
     }
 }
