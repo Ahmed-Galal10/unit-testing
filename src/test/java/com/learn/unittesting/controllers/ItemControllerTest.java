@@ -12,6 +12,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.Arrays;
+
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -21,6 +23,7 @@ class ItemControllerTest {
 
     private static final String ITEM_URL = "/item";
     private static final String ITEM_BUSINESS_URL = "/item-from-business";
+    private static final String ITEM_DATABASE_URL = "/item-from-database";
 
     @Autowired
     private MockMvc mockMvc;
@@ -44,7 +47,7 @@ class ItemControllerTest {
     }
 
     @Test
-    public void getItemFromBusiness() throws Exception {
+    public void getAllItemsFromBusiness() throws Exception {
         // prepare itemBusiness Service
         when(itemBusinessService.getItem())
                 .thenReturn(new Item(1, "TV", "LG", 22, 2000));
@@ -57,6 +60,26 @@ class ItemControllerTest {
         MvcResult mvcResult = mockMvc.perform(requestBuilder)
                 .andExpect(status().isOk())
                 .andExpect(content().json("{name: 'TV', price: 2000}"))
+                .andReturn();
+    }
+
+    @Test
+    public void getItemFromDatabase() throws Exception {
+        Item item1 = new Item(1, "TV", "LG", 22, 2000);
+        Item item2 =  new Item(2, "Mobile", "Samsung", 7, 1500);
+
+        // prepare itemBusiness Service
+        when(itemBusinessService.getAllItemsFromDatabase())
+                .thenReturn(Arrays.asList(item1, item2));
+
+        // Call GET '/item' accept application/json
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .get(ITEM_DATABASE_URL)
+                .accept(MediaType.APPLICATION_JSON_VALUE);
+
+        MvcResult mvcResult = mockMvc.perform(requestBuilder)
+                .andExpect(status().isOk())
+                .andExpect(content().json("[{name: 'TV', price: 2000}, {name: 'Mobile', quantity: 7}]"))
                 .andReturn();
     }
 }
