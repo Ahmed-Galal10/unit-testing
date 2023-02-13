@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Getter
 @Setter
@@ -13,11 +14,13 @@ import javax.persistence.Id;
 @Entity
 public class Item {
     @Id
-    int id;
-    String name;
-    String brand;
-    int quantity;
-    double price;
+    private int id;
+    private String name;
+    private String brand;
+    private int quantity;
+    private double price;
+    @Transient
+    private double totalValue;
 
     public Item(int id, String name, String brand, int quantity, double price) {
         this.id = id;
