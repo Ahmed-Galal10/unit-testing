@@ -1,5 +1,6 @@
 package com.learn.unittesting.business;
 
+import com.learn.unittesting.business.impl.SomeBusinessImpl;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

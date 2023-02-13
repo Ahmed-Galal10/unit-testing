@@ -1,4 +1,4 @@
-package com.learn.unittesting.business;
+package com.learn.unittesting.business.impl;
 
 import com.learn.unittesting.data.DataService;
 import org.springframework.stereotype.Service;
