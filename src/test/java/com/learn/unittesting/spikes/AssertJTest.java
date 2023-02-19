@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AssertJTest {
 
     @Test
-    public void applyHamcrestHelpers() {
+    public void applyAssertJHelpers() {
         List<Integer> numbers = Arrays.asList(8, 15, 22);
 
         assertThat(numbers).hasSize(3)
